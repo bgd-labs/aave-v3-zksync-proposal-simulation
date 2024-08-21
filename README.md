@@ -21,7 +21,7 @@ make start-node
 
 2. Open another terminal and run the following command. This will execute the payload and activate zkSync aave v3 market.
 ```
-make execute-proposal
+make execute-script
 ```
 
 3. You can now use the era-test-node url (generally `http://127.0.0.1:8011`) instead of the rpc to test stuff on the UI or any other places.
