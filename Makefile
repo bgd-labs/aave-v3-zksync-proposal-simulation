@@ -11,6 +11,6 @@ install-deps:;
 start-node:; 
 	era_test_node --show-calls=all fork ${RPC_ZKSYNC}
 
-# execute proposal
-execute-proposal:;
+# execute script
+execute-script:;
 	npx hardhat run scripts/execute.ts
