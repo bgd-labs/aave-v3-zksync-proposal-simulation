@@ -10,7 +10,7 @@ async function main() {
     const signer = await ethers.getSigner(GovernanceV3ZkSync.EXECUTOR_LVL_1);
 
     // deployed zksync activation proposal address
-    const payloadAddress = "0xc2f9317ce995a40a1ba4b1b6d07c1a907ef8503f";
+    const payloadAddress = "0xab4Ca2EEb42EB72c7a07C62783544ACec2EAbc0e";
 
     const tokenAddresses = {
       usdc: "0x1d17CBcF0D6D143135aE902365D2E5e2A16538D4",
@@ -24,9 +24,9 @@ async function main() {
     // after listing and as the payload is not being executed via delegate-call
     for (const [tokenName, address] of Object.entries(tokenAddresses)) {
       const token = await ethers.getContractAt("IERC20", address, signer);
-      const amount = tokenName === 'usdc' || tokenName === 'usdt' ? 10e6 :
-                      tokenName === 'weth' || tokenName === 'wstEth' ? 0.01e18 :
-                      100e18; // for zk
+      const amount = tokenName === 'usdc' || tokenName === 'usdt' ? ethers.parseUnits('100', 6) :
+                      tokenName === 'weth' || tokenName === 'wstEth' ? ethers.parseUnits('0.1', 18) :
+                      ethers.parseUnits('1000', 18); // for zk
       await token.transfer(payloadAddress, amount.toString());
     }
 
