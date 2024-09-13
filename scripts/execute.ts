@@ -24,9 +24,9 @@ async function main() {
     // after listing and as the payload is not being executed via delegate-call
     for (const [tokenName, address] of Object.entries(tokenAddresses)) {
       const token = await ethers.getContractAt("IERC20", address, signer);
-      const amount = tokenName === 'usdc' || tokenName === 'usdt' ? 100e6 :
-                      tokenName === 'weth' || tokenName === 'wstEth' ? 0.1e18 :
-                      1000e18; // for zk
+      const amount = tokenName === 'usdc' || tokenName === 'usdt' ? ethers.parseUnits('100', 6) :
+                      tokenName === 'weth' || tokenName === 'wstEth' ? ethers.parseUnits('0.1', 18) :
+                      ethers.parseUnits('1000', 18); // for zk
       await token.transfer(payloadAddress, amount.toString());
     }
 
